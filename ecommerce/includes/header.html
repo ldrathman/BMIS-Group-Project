@@ -1,6 +1,7 @@
 <?php # Script 19.3 - header.html
+// This page begins the session, the HTML page, and the layout table.
 
-session_start();
+session_start(); //Start a session.
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML
 1.0 Transitional//EN"
 		"http://www.w3.org/TR/xhtml1/DTD/
@@ -11,7 +12,7 @@ xhtml" xml:lang="en" lang="en">
 	<meta http-equiv="content-type"
 	content-"text/html; charset=utf-8" />
 	<title><?php echo (isset($page_title))
-	? $page_title : "Welcome!"; ?></title>
+	? $page_title : 'Welcome!'; ?></title>
 </head>
 <body>
 <table cellspacing="0" cellpadding="0"
