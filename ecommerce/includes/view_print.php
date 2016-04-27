@@ -1,18 +1,22 @@
 <?php # Script 19.7 - view_print.php
+// This page displays the details for a particular print.
 
-$row = FALSE; 
+$row = FALSE; // Assume nothing
 
 if (isset($_GET['pid']) && filter_var($_GET['pid'], 
 FILTER_VALIDATE_INT, array('min_range' => 1)) ) {
+// Make sure there's a print ID
 	
 	$pid = $_GET['pid'];
 	
+	//Get the print info:
 	require ('../mysqli_connect.php');
+	
+	//Connect to the database.
 	$q = "SELECT CONCAT_WS(' ', first_name,
 	middle_name, last_name)
 	AS artist, print_name, price, description,
-	size, image_name FROM artists, prints WHERE
-	artists, prints WHERE artists.artists_
+	size, image_name FROM artists, prints WHERE artists.artist_
 	id=prints.artist_id AND prints.
 	print_id=$pid";
 	$r = mysqli_query ($dbc, $q);
@@ -36,26 +40,34 @@ FILTER_VALIDATE_INT, array('min_range' => 1)) ) {
 		<a href=\'add_cart.php?pid=$pid\'>Add to Cart</a>
 		</div><br />";
 		
+		// Get the image information and display the image:
 		if ($image = @getimagesize ("../uploads/$pid")) {
-			echo "<div align=\'center\'><img src=\'show_image.php?image=$pid&name=' . urlencide
+			echo "<div align=\'center\'><img src=\'show_image.php?image=$pid&name=' . urlencode
 			($row['image_name') . "\" $image[3] alt=\"{row['print_name']}\" /></div>\n";
 		}else {
 			echo "<div align=\'center\'>No image available.</div>\n";
 		}
 		
-		echo "<p align='center'> . ((is_null($row['description'])) ? '(No description available)'
+		// Add the description or a default message:
+		echo "<p align='center'> . ((is_null($row['description'])) ? '(No description available)' :
 		$row['description']) . '</p>";
 		
-	}
+	} //End of the mysqli_num_rows() IF.
 	
 	mysqli_close($dbc);
 	
-}
-if (!$row){
+} // End of the mysqli_num_rows() IF. 
+
+mysqli_close($dbc);
+
+}// End of $_GET['pid'] IF.
+
+if (!$row){ // Show an error message.
 	$page_title = 'Error';
 	include ('includes/header.html');
 	echo "<div alig="center">This page has been accessed in error!</div>";
 }
 
+// Complete the page:
 include ('includes/footer.html');
 ?>
