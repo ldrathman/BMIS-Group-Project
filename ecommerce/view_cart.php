@@ -90,4 +90,3 @@ if (!empty($_SESSION['cart']))
 
 include('includes/footer.html');
 ?>
-
