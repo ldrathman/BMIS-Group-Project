@@ -33,7 +33,7 @@ require('mysqli_connect.php');
 		if(is_uploaded_file ($_FILES['image']['tmp_name']))
 	{
 		//Create a temporary file name:
-		$temp = '../../uploads/' . md5($_FILES['image']['name']); 
+		$temp = 'images' . md5($_FILES['image']['name']); 
 	}
 	//Move the file over:
 	if(move_uploaded_file($_FILES['image']['tmp_name'], $temp))
