@@ -24,7 +24,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 		$ln = trim($_POST['last_name']); 
 		
 		//Add the artist to the database:
-		require ('../../mysqli_connect.php'); 
+		require ('mysqli_connect.php'); 
 		$q = 'INSERT INTO artists (first_name, middle_name, last_name)
 		VALUES (?, ?, ?)'; 
 		$stmt = mysqli_prepare($dbc, $q); 
